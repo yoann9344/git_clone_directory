@@ -2,6 +2,18 @@
 Clone only a subdirectory from Github without creating or replacing the .git/ config !
 If a file already exist ask if you want to replace it.
 
+## Installation
+```bash
+mkdir -p ~/bin/ && cd ~/bin/
+git clone https://github.com/yoann9344/git_clone_directory.git && cd git_clone_directory/
+# then link github.py to your $PATH
+# example link in /usr/bin with name github
+ln -s github.py /usr/bin/github
+
+# then to update
+cd ~/bin/git_clone_directory/ && git pull
+```
+
 ## Command Line Interface
 ```bash
 github [OPTIONS] GITHUB_DIRECTORY [PATH]
