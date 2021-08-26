@@ -55,9 +55,16 @@ The options can't be group (-vd won't activate neither debug or verbose mode)
 github.py https://github.com/yoann9344/git_clone_directory/tree/main/path/to/subfolder
 
 # Copy content of directory '/plugin' from the vim-regex-syntax's repo to the ~/.vim/plugin
-github.py https://github.com/Galicarnax/vim-regex-syntax/blob/master/plugin/regex.vim ~/.vim/plugin/
+github.py https://github.com/Galicarnax/vim-regex-syntax/tree/master/plugin ~/.vim/plugin/
 
 # Copy content of directory '/plugin' from the vim-regex-syntax's repo to the ~/.vim/plugin
 # Replacing all existing files without asking with a verbose mode
-github.py -v --yes https://github.com/Galicarnax/vim-regex-syntax/blob/master/plugin/regex.vim ~/.vim/plugin/
+github.py -v --yes https://github.com/Galicarnax/vim-regex-syntax/tree/master/plugin ~/.vim/plugin/
+
+# Copy content of directory '/plugin' from the vim-regex-syntax's repo to the ~/.vim/plugin
+# using a specific commit (4cdebc1893b2a013c5af4057102d393321855a4e)
+github.py https://github.com/Galicarnax/vim-regex-syntax/blob/4cdebc1893b2a013c5af4057102d393321855a4e/plugin ~/.vim/plugin/
+
+# Same but copy only the file "regex.vim"
+github.py https://github.com/Galicarnax/vim-regex-syntax/blob/4cdebc1893b2a013c5af4057102d393321855a4e/plugin/regex.vim ~/.vim/plugin/
 ```
