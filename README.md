@@ -24,7 +24,7 @@ github [OPTIONS] GITHUB_DIRECTORY [PATH]
 Github link to a directory, following this regex :
 
 ```regex
-(https://github\.com/([^/]+)/([^/]+)/tree/([^/]+))/(.*)$
+(https://github\.com/([^/]+)/([^/]+)/(?:tree|blob)/([^/]+))/(.*)$
 ```
 
 #### *Path*
