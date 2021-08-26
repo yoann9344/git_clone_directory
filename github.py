@@ -96,12 +96,13 @@ class Archive:
 
 def get_github_archive(url: str):
     archive_url, user, repo_name, branch, path = re.search(
-        r'(https://github\.com/([^/]+)/([^/]+)/tree/([^/]+))/(.*)$',
+        r'(https://github\.com/([^/]+)/([^/]+)/(?:tree|blob)/([^/]+))/(.*)$',
         url
     ).groups()
 
+    # replace /tree/ or /blob/ by /archive/
     archive_url = re.sub(
-        r'(https://github\.com/[^/]+/[^/]+)/tree/',
+        r'(https://github\.com/[^/]+/[^/]+)/(tree|blob)/',
         r'\1/archive/',
         archive_url,
     )
