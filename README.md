@@ -4,8 +4,12 @@ If a file already exist ask if you want to replace it.
 
 ## Installation
 ```bash
+# Requires "requests"
+pip install requests
+# Clone this repository somewhere
 mkdir -p ~/bin/ && cd ~/bin/
 git clone https://github.com/yoann9344/git_clone_directory.git && cd git_clone_directory/
+# Add right to execute
 chmod +x github.py
 # then link github.py to your $PATH
 # example link in /usr/bin with name github
