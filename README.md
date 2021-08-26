@@ -6,12 +6,13 @@ If a file already exist ask if you want to replace it.
 ```bash
 mkdir -p ~/bin/ && cd ~/bin/
 git clone https://github.com/yoann9344/git_clone_directory.git && cd git_clone_directory/
+chmod +x github.py
 # then link github.py to your $PATH
 # example link in /usr/bin with name github
-ln -s github.py /usr/bin/github
+ln -s ~/bin/git_clone_directory/github.py /usr/bin/github
 
 # then to update
-cd ~/bin/git_clone_directory/ && git pull
+cd ~/bin/git_clone_directory/ && git pull && chmod +x github.py
 ```
 
 ## Command Line Interface
