@@ -66,6 +66,8 @@ class Archive:
     def extract(self, directory: str):
         nb_files_extracted = 0
         nb_dirs_extracted = 0
+        if only_save_tar:
+            new_tar = tarfile.open(f'{self.repo_name}.tar.gz', mode='w|gz')
 
         for tarinfo in self.tar:
             if debug:
@@ -80,9 +82,12 @@ class Archive:
                 tarinfo.path = str(
                     PurePath(tarinfo.path).relative_to(self.archive_dir)
                 )
-                if not is_path_secure(tar_info=tarinfo, directory=directory):
+                if only_save_tar:
+                    new_tar.addfile(tarinfo, self.tar.extractfile(tarinfo))
                     continue
-                if Path(f'{directory}/{tarinfo.path}').exists() and not yes_man:
+                elif not is_path_secure(tar_info=tarinfo, directory=directory):
+                    continue
+                elif Path(f'{directory}/{tarinfo.path}').exists() and not yes_man:
                     if no_no_no_no:
                         continue
                     print('Extracting', tarinfo.name.split('/')[-1])
@@ -106,6 +111,8 @@ class Archive:
                     nb_files_extracted += 1
         print(f'{nb_files_extracted} files extracted !')
         print(f'{nb_dirs_extracted} directories extracted !')
+        if only_save_tar:
+            new_tar.close()
         self.tar.close()
 
 
@@ -147,12 +154,6 @@ def get_github_archive(url: str):
     else:
         response = requests.get(archive_url)
         tar = tarfile.open(fileobj=io.BytesIO(response.content), mode='r|gz')
-
-    if only_save_tar:
-        with open(f'{repo_name}.tar.gz', 'wb+') as file:
-            file.write(response.content)
-        tar.close()
-        exit(0)
 
     archive = Archive(
         tar,

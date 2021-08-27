@@ -48,6 +48,8 @@ The options can't be group (-vd won't activate neither debug or verbose mode)
 
 -n, --no => Say no to all questions (will not replace existing files)
 
+-t, --tar => Simply save a tar.gz without uncompressing it
+
 ## Examples
 ```bash
 # Copy content of directory '/path/to/subfolder' from this reposistory to the current directory
@@ -67,4 +69,7 @@ github.py https://github.com/Galicarnax/vim-regex-syntax/blob/4cdebc1893b2a013c5
 
 # Same but copy only the file "regex.vim"
 github.py https://github.com/Galicarnax/vim-regex-syntax/blob/4cdebc1893b2a013c5af4057102d393321855a4e/plugin/regex.vim ~/.vim/plugin/
+
+# Extract this repo in a tar.gz
+github.py -t https://github.com/yoann9344/git_clone_directory/tree/main/
 ```
