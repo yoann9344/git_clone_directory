@@ -148,6 +148,12 @@ def get_github_archive(url: str):
         response = requests.get(archive_url)
         tar = tarfile.open(fileobj=io.BytesIO(response.content), mode='r|gz')
 
+    if only_save_tar:
+        with open(f'{repo_name}.tar.gz', 'wb+') as file:
+            file.write(response.content)
+        tar.close()
+        exit(0)
+
     archive = Archive(
         tar,
         archive_url,
@@ -175,6 +181,7 @@ if __name__ == '__main__':
     verbose = False
     yes_man = False
     no_no_no_no = False
+    only_save_tar = False
 
     params = sys.argv[1:]
     for i, param in enumerate(params):
@@ -186,6 +193,8 @@ if __name__ == '__main__':
             yes_man = True
         elif param in ['-n', '--no']:
             no_no_no_no = True
+        elif param in ['-t', '--tar']:
+            only_save_tar = True
 
         if param.startswith('-'):
             pass
